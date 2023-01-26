@@ -2,7 +2,6 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
 const cors = require('cors')
-const knex = require('knex')
 const {ClarifaiStub, grpc} = require("clarifai-nodejs-grpc");
 //controllers:
 const register = require('./controllers/register');
@@ -18,7 +17,7 @@ const DB_PASSWORD = process.env.DB_PASSWORD
 
 //initialise
 const app = express();
-knex({
+const knex = require('knex')({
     client: 'pg',
     connection: {
       host : 'postgres://nisal:fcLVEmfxOU5a6UyCJ223qZuYI2MUA0yV@dpg-cf8noco2i3mmd0llo4l0-a.singapore-postgres.render.com/facedetectdb',
@@ -28,7 +27,6 @@ knex({
       database : 'facedetectdb'
     }
   });
-
 ////middleware////
 
 app.use(express.json())
