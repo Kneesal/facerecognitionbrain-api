@@ -2,16 +2,7 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
 const cors = require('cors')
-const knex = require('knex')({
-    client: 'pg',
-    connection: {
-      host : '127.0.0.1',
-      port : 5432,
-      user : 'nisal',
-      password : '',
-      database : 'smart-brain'
-    }
-  });
+const knex = require('knex')
 const {ClarifaiStub, grpc} = require("clarifai-nodejs-grpc");
 //controllers:
 const register = require('./controllers/register');
@@ -20,12 +11,23 @@ const image = require('./controllers/image');
 const profile = require('./controllers/profile')
 
 
-//initialise
-const app = express();
-
 ////// injecting Environment Variables
 const PORT = process.env.PORT || 3000
 const KEY = process.env.KEY
+const DB_PASSWORD = process.env.DB_PASSWORD
+
+//initialise
+const app = express();
+knex({
+    client: 'pg',
+    connection: {
+      host : 'postgres://nisal:fcLVEmfxOU5a6UyCJ223qZuYI2MUA0yV@dpg-cf8noco2i3mmd0llo4l0-a.singapore-postgres.render.com/facedetectdb',
+      port : 5432,
+      user : 'nisal',
+      password : DB_PASSWORD,
+      database : 'facedetectdb'
+    }
+  });
 
 ////middleware////
 
