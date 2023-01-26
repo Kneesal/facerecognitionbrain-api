@@ -11,22 +11,24 @@ const profile = require('./controllers/profile')
 
 
 ////// injecting Environment Variables
-const PORT = process.env.PORT || 3000
-const KEY = process.env.KEY
-const DB_PASSWORD = process.env.DB_PASSWORD
+const PORT = process.env.PORT || 3000;
+const KEY = process.env.KEY;
+const DB_PASSWORD = process.env.DB_PASSWORD;
+const DATABASE_URL = process.env.DATABASE_URL;
 
 //initialise
 const app = express();
 const knex = require('knex')({
     client: 'pg',
     connection: {
-      host : 'postgres://nisal:fcLVEmfxOU5a6UyCJ223qZuYI2MUA0yV@dpg-cf8noco2i3mmd0llo4l0-a.singapore-postgres.render.com/facedetectdb',
+      host : DATABASE_URL,
       port : 5432,
       user : 'nisal',
       password : DB_PASSWORD,
       database : 'facedetectdb'
     }
   });
+  
 ////middleware////
 
 app.use(express.json())
