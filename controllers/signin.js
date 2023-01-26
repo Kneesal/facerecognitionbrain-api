@@ -26,7 +26,7 @@ const hangleSignIn = (req, res, knex, bcrypt) => {
             res.status(400).json('incorrect username or password')
         }
     })
-    .catch(err => res.json('cannot communicate with database')) 
+    .catch(err => res.json(err + ' cannot communicate with database')) 
 }
 
 module.exports = {
