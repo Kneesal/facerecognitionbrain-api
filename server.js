@@ -21,7 +21,7 @@ const app = express();
 const knex = require('knex')({
     client: 'pg',
     connection: {
-      host : DATABASE_URL,
+      host : 'dpg-cf8noco2i3mmd0llo4l0-a',
       port : 5432,
       user : 'nisal',
       password : DB_PASSWORD,
